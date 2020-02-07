@@ -1,0 +1,260 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+int j=-1;
+class tictactoe{
+		  public: int status;
+			  char symbol;      // class having data for every block status(either filled or not and with which symbol
+		  tictactoe()
+		  {  status=0;  }
+
+	      } board[9];                   // board having 9 block
+
+void checkwin()                             // function check for win of either x or o
+{ if (board[0].symbol== board[1].symbol && board[1].symbol== board[2].symbol)
+     { if(board[0].status==1)
+	  {  cout<< "\n\n "<<board[0].symbol<<"  wins";
+	     getch();
+	     exit(0);
+	  }
+     }
+   else if(board[3].symbol== board[4].symbol && board[4].symbol== board[5].symbol)
+     { if(board[3].status==1)
+	  {  cout<< "\n\n "<<board[3].symbol<<"  wins";
+	     getch();
+	     exit(0);
+	  }
+     }
+   else if(board[6].symbol== board[7].symbol && board[7].symbol== board[8].symbol)
+     { if(board[6].status==1)
+	  {  cout<< "\n\n "<<board[6].symbol<<"  wins";
+	     getch();
+	     exit(0);
+	  }
+     }
+   else if(board[0].symbol== board[3].symbol && board[3].symbol== board[6].symbol)
+     { if(board[0].status==1)
+	  {  cout<< "\n\n "<<board[0].symbol<<"  wins";
+	     getch();
+	     exit(0);
+	  }
+     }
+   else if(board[1].symbol== board[4].symbol && board[4].symbol== board[7].symbol)
+     { if(board[1].status==1)
+	  {  cout<< "\n\n "<<board[1].symbol<<"  wins";
+	     getch();
+	     exit(0);
+	  }
+     }
+   else if(board[2].symbol== board[5].symbol && board[5].symbol== board[8].symbol)
+     { if(board[2].status==1)
+	  {  cout<< "\n\n "<<board[2].symbol<<"  wins";
+	     getch();
+	     exit(0);
+	  }
+     }
+   else if(board[0].symbol== board[4].symbol && board[4].symbol== board[8].symbol)
+     { if(board[0].status==1)
+	  {  cout<< "\n\n "<<board[0].symbol<<"  wins";
+	     getch();
+	     exit(0);
+	  }
+     }
+     else if(board[2].symbol== board[4].symbol && board[4].symbol== board[6].symbol)
+     { if(board[2].status==1)
+	  {  cout<< "\n\n "<<board[2].symbol<<"  wins";
+	     getch();
+	     exit(0);
+	  }
+     }
+     int a=0;
+     for (int i=0;i<9;i++)
+       {  if(board[i].status==0)
+	    { a=1;}
+	}
+     if(a==0)
+      {  cout<<"\n\n game is draw ";
+	 getch();
+	 exit(0);
+       }
+}                                               // function checkwins ends here
+
+void displayboard()                             // fuction will draw board of tic tac toe game
+{  cout<< "\n\n"<< board[0].symbol<<"  | "<<board[1].symbol<<" | "<<board[2].symbol;
+   cout<<"\n ------------";
+   cout<< "\n"<< board[3].symbol<<"  | "<<board[4].symbol<<" | "<<board[5].symbol;
+   cout<<"\n ------------";
+   cout<< "\n"<< board[6].symbol<<"  | "<<board[7].symbol<<" | "<<board[8].symbol;
+}
+
+int computermove()                              // function will predict best possible move for computer
+{                                               // using previous data of void position and how can the person win
+   if (board[0].status==0)
+    {if (board[1].symbol== board[2].symbol)
+	{  if(board[1].status==1)
+		return 0;
+	}
+     if (board[3].symbol== board[6].symbol)
+	{  if(board[3].status==1)
+		return 0;
+	}
+     if (board[4].symbol== board[8].symbol)
+	{  if(board[4].status==1)
+		return 0;
+	}
+    }
+   if (board[1].status==0)
+    { if (board[0].symbol== board[2].symbol)
+	 {  if(board[0].status==1)
+		return 1;
+	  }
+      if (board[4].symbol== board[7].symbol)
+	  {  if(board[4].status==1)
+		 return 1;
+	   }
+     }
+    if (board[2].status==0)
+    {  if (board[4].symbol== board[6].symbol)
+	 {  if(board[4].status==1)
+		return 2;
+	  }
+      if (board[0].symbol== board[1].symbol )
+	  { if(board[0].status==1)
+		 return 2;
+	  }
+      if (board[5].symbol== board[8].symbol)
+	  {  if(board[5].status==1)
+	    return 2;
+	   }
+    }
+    if (board[3].status==0)
+   {  if (board[4].symbol== board[5].symbol)
+	   {  if(board[4].status==1)
+	       return 3;
+	   }
+      if (board[0].symbol== board[6].symbol)
+	   {  if(board[0].status==1)
+	       return 3;
+	   }
+    }
+    if (board[4].status==0)
+    {  if (board[3].symbol== board[5].symbol)
+	  {  if(board[3].status==1)
+		return 4;
+	  }
+       if (board[1].symbol== board[7].symbol)
+	  {  if(board[1].status==1)
+		  return 4;
+	   }
+       if (board[0].symbol== board[8].symbol)
+	   {  if(board[0].status==1)
+		  return 4;
+	    }
+       if (board[2].symbol== board[6].symbol)
+	   {  if(board[2].status==1)
+		  return 4;
+	    }
+     }
+
+     if (board[5].status==0)
+     { if (board[3].symbol== board[4].symbol)
+	 {  if(board[3].status==1)
+		    return 5;
+	  }
+	if (board[2].symbol== board[8].symbol)
+	  {  if(board[2].status==1)
+		  return 5;
+	   }
+      }
+
+    if (board[6].status==0)
+    {  if (board[2].symbol== board[4].symbol)
+	 {  if(board[2].status==1)
+		return 6;
+	  }
+       if (board[7].symbol== board[8].symbol)
+	  {  if(board[7].status==1)
+		return 6;
+	  }
+       if (board[0].symbol== board[3].symbol)
+	  {  if(board[0].status==1)
+		return 6;
+	   }
+     }
+
+     if (board[7].status==0)
+    {  if (board[1].symbol== board[4].symbol)
+	 {  if(board[1].status==1)
+		return 7;
+	   }
+
+       if (board[6].symbol== board[8].symbol)
+	 {  if(board[6].status==1)
+		return 7;
+	   }
+     }
+
+     if (board[8].status==0)
+    {   if (board[6].symbol== board[7].symbol)
+	 {  if(board[6].status==1)
+		    return 8;
+	  }
+	if (board[2].symbol== board[5].symbol)
+	  {   if(board[2].status==1)
+		  return 8;
+	   }
+	if (board[0].symbol== board[4].symbol)
+	{  if(board[0].status==1)
+		  return 8;
+	 }
+   }     j++;
+      return j;
+}                                               // function computermove ends here
+
+void main()           // main function starts here
+{ int flag=0;
+  int test=0;
+  clrscr();
+  cout<<" \n\n *************hello user *****************";
+  cout<<" \n game is all about tic tac toe played between two player ";
+  for (int i=0;i<1000;i++);
+  cout<<"\n instruction: press for respective block no. for move \n 1  2  3 \n 4  5  6 \n 7  8  9";
+  cout<<" \n \n               lets start game             ";
+  displayboard();
+  for (i=0;i<50;)
+  {  if( flag==0)
+       {      if (i<2)                             //computer move
+		 {test=5+i;i++;}
+	      else
+		  test=computermove()+1;
+	      if ( board[test-1].status==0)
+		    { board[test-1].symbol='o';
+		      board[test-1].status=1;
+		      displayboard();
+		      flag=1 ;
+		    }
+	      else
+		{  ;
+		}
+
+	       checkwin();
+	}
+     else
+      {    	cout<<" \nenter move for x ";
+		cin>>test;                                   //user move
+		if ( board[test-1].status==0)
+		  { board[test-1].symbol='x';
+		    board[test-1].status=1;
+		    displayboard();
+		    flag=0;
+		  }
+		else
+		{ cout<<"\n\n  invalid move  " ;
+
+		}
+
+		checkwin();
+     }
+   }
+  getch();
+  }
